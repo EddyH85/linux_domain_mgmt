@@ -1,0 +1,112 @@
+- name: Install Required Packages
+  yum:
+    name: "{{ package }}"
+    state: present
+  environment: "{{ proxy_env }}"
+  when:
+    - use_proxy is defined
+    - use_proxy
+
+- name: Install Required Packages
+  yum:
+    name: "{{ package }}"
+    state: present
+  when: (use_proxy is not defined) or (not use_proxy)
+
+- name: Checking Domain Join status
+  command: id "{{ Join_User }}"
+  register: ad_status
+  changed_when: false
+  ignore_errors: true
+
+- name: play ad_status
+  debug:
+    msg: "ad_status is {{ ad_status.rc }}"
+
+- name: Active Dircetory Domain Join in to {{ DomainName }}
+  block:
+    - name: Configuring Kerberos V5 Client
+      template:
+        src: krb5.conf.j2
+        dest: /etc/krb5.conf
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: nsswitch | enable sss
+      replace:
+        dest: /etc/nsswitch.conf
+        regexp: '^({{ item }}(?!.*\bsss\b).*)$'
+        replace: '\1 sss'
+        backup: yes
+        with_items:
+          - passwd
+          - group
+          - shadow
+          - services
+          - netgroup
+          - sudoers
+
+    - name: Enable SSO on SSH Daemon
+      lineinfile:
+        backup: yes
+        state: present
+        dest: /etc/ssh/sshd_config
+        regexp: '^#?\s*{{ item.search }}\s'
+        line: '{{ item.replace }}'
+        validate: sshd -T -f %s
+      with_items:
+        - { search: 'GSSAPIAuthentication', replace: 'GSSAPIAuthentication yes' }
+        - { search: 'GSSAPICleanupCredentials', replace: 'GSSAPICleanupCredentials yes' }
+      notify: restart sshd
+
+    - name: Enable SSO on SSH Client
+      lineinfile:
+        backup: yes
+        state: present
+        dest: /etc/ssh/ssh_config
+        regexp: '^#?\s*{{ item.search }}\s'
+        line: '{{ item.replace }}'
+      with_items:
+        - { search: 'GSSAPIAuthentication', replace: 'GSSAPIAuthentication yes' }
+        - { search: 'GSSAPIDelegateCredentials', replace: 'GSSAPIDelegateCredentials yes' }
+
+    - name: Join {{ ansible_distribution }} {{ ansible_distribution_major_version }} into Domain {{ DomainName }}
+      expect:
+        command: /bin/bash -c "adcli join -U {{ Join_User }} {{ DomainName }} -O {{ Join_OU }}"
+        responses:
+          Password for *: "{{ Join_User_Pass }}"
+
+    - name: Check if pam-config did a previous run
+      command: egrep '^auth.*pam_sss.so' /etc/pam.d/common-auth
+      register: pam-config_run
+      changed_when: false
+      ignore_errors: true
+
+    - name: Configure PAM to use SSSD for auth
+      command: pam-config --add --sss --mkhomedir
+      when: pam-config_run.rc != 0
+
+    - name: Configuring SSSD Client
+      template:
+        src: sssd.conf.j2
+        dest: /etc/sssd/sssd.conf
+        owner: root
+        group: root
+        mode: 0600
+      notify: restart sssd
+
+    - name: Ensure SSSD is started and enabled on boot
+      service:
+        name: sssd
+        state: started
+        enabled: yes
+
+    - name: Check if {{ PermitAdminGroups }} exist in /etc/sudoers
+      lineinfile:
+        path: /etc/sudoers
+        regexp: '^ansible'
+        line: 'DESA_LNX_ADMIN ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+
+  when: ad_status.rc !=0
