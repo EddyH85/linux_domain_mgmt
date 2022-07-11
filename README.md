@@ -59,6 +59,7 @@ domain_realms:
 
 This role is tested on Linux distributions:
 
+- (open)SUSE 12 and 15
 - RHEL/CentOS 8
 - RHEL/CentOS 7
 - RHEL/CentOS 6
