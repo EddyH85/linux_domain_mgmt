@@ -1,6 +1,9 @@
 ---
 - include_vars: main.yml
 
+- name: Load AD User credentials
+  include_vars: credentials.yml
+
 - name: Join Active Directory Domain Tasks
   include_tasks: join_domain.yml
   when: join_domain == true
