@@ -31,3 +31,9 @@
 - name: Disable SSSD in PAM configuration
   command: /bin/bash -c "pam-config --delete --sss"
   when: adleave != 0
+
+- name: SUSE - ensure nscd is absent
+  package:
+    name: nscd
+    state: present
+    when: ansible_distribution_file_variety == 'SUSE'

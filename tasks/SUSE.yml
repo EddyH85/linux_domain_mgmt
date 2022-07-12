@@ -7,3 +7,8 @@
 - name: Configure PAM to use SSSD for auth
   command: pam-config --add --sss --mkhomedir
   when: pamConfig_run.rc != 0
+
+- name: SUSE - ensure nscd is absent
+  package:
+    name: nscd
+    state: absent
