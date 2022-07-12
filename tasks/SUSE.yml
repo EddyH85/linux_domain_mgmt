@@ -72,7 +72,7 @@
         - { search: 'GSSAPIDelegateCredentials', replace: 'GSSAPIDelegateCredentials yes' }
 
     - name: Join {{ ansible_hostname }} into Domain {{ DomainName }}
-      command: /bin/bash -c "echo '{{ Join_User_Pass }}' | adcli join -U {{ Join_User }} {{ DomainName }} -O '{{ Join_OU }}' –-stdin-password"
+      command: /bin/bash -c "echo '{{ Join_User_Pass }}' | adcli join -U {{ Join_User }} {{ DomainName }} -O '{{ Join_OU }}' --stdin-password"
 
 
     - name: Check if pam-config did a previous run

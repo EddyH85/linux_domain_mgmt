@@ -1,0 +1,25 @@
+[sssd]
+config_file_version = 2
+services = nss, pam
+domains = wuh-intern.de
+[nss]
+ 
+[pam]
+ 
+[domain/wuh-intern.de]
+ad_domain = wuh-intern.de
+krb5_realm = WUH-INTERN.DE
+cache_credentials = true
+id_provider = ad
+krb5_store_password_if_offline = false
+ldap_id_mapping = True
+use_fully_qualified_names = False
+fallback_homedir = /home/%u
+access_provider = simple
+ignore_group_members = True
+ad_gpo_ignore_unreadable = True
+default_shell = /bin/bash
+override_shell = /bin/bash
+dyndns_update = False
+simple_allow_users = {{ PermitAdminUsers }}
+simple_allow_groups = {{ PermitAdminGroups }}
