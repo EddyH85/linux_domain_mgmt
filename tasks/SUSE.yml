@@ -103,7 +103,7 @@
     - name: Check if {{ PermitAdminGroups }} exist in /etc/sudoers
       lineinfile:
         path: /etc/sudoers
-        regexp: '^{{ PermitAdminGroups }}'
-        line: '%{{ PermitAdminGroups }}\tALL=(ALL)\tNOPASSWD: ALL'
+        regexp: '^%{{ PermitAdminGroups }}'
+        line: '%{{ PermitAdminGroups }} ALL=(ALL) NOPASSWD: ALL'
         validate: 'visudo -cf %s'
   when: ad_status.rc !=0
