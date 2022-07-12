@@ -8,8 +8,8 @@
   debug:
     msg: "ad_status is {{ ad_status.rc }}"
 
-- name: Joining into Domain {{ DomainName }}
-  command: /bin/bash -c "echo '{{ Join_User_Pass }}' | adcli delete-computer -U {{ Join_User }} {{ DomainName }} --stdin-password"
+- name: leaving Active Directory Domain {{ DomainName }}
+  command: /bin/bash -c "echo '{{ Join_User_Pass }}' | adcli delete-computer -U {{ Join_User }} --stdin-password"
   register: adleave
   changed_when: true
   when: ad_status.rc ==0
