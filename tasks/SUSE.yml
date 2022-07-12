@@ -71,7 +71,7 @@
         - { search: 'GSSAPIAuthentication', replace: 'GSSAPIAuthentication yes' }
         - { search: 'GSSAPIDelegateCredentials', replace: 'GSSAPIDelegateCredentials yes' }
 
-    - name: Join {{ ansible_distribution }} {{ ansible_distribution_major_version }} into Domain {{ DomainName }}
+    - name: Join {{ ansible_hostname }} into Domain {{ DomainName }}
       expect:
         command: /bin/bash -c "adcli join -U {{ Join_User }} {{ DomainName }} -O {{ Join_OU }}"
         responses:
