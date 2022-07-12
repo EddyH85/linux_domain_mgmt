@@ -1,5 +1,5 @@
 - name: Check if pam-config did a previous run
-  command: egrep '^auth.*pam_sss.so' /etc/pam.d/common-auth
+  command: "egrep '^auth.*pam_sss.so' /etc/pam.d/common-auth"
   register: pamConfig_run
   changed_when: false
   ignore_errors: true
