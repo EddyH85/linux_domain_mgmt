@@ -1,0 +1,32 @@
+- name: Checking Domain status
+  command: id "{{ Join_User }}"
+  register: ad_status
+  changed_when: true
+  ignore_errors: true
+
+- name: play ad_status
+  debug:
+    msg: "ad_status is {{ ad_status.rc }}"
+
+- name: Joining into Domain {{ DomainName }}
+  command: /bin/bash -c "echo '{{ Join_User_Pass }}' | adcli delete-computer -U {{ Join_User }} {{ DomainName }} --stdin-password"
+  changed_when: true
+  when: ad_status.rc ==0
+
+- name: Delete all configuration files & krb5 Session information
+  command: /bin/bash -c "rm /etc/krb5.*; rm /etc/sssd/sssd.conf; rm -rf /tmp/krb5*"
+  when: pamConfig_run.rc != 0
+
+- name: Stop and disable SSSD Daemon 
+  service:
+    name: sssd
+    state: disabled
+    enabled: false
+
+- name: Delete SSSD Cache
+  command: /bin/bash -c "sss_cache -E"
+  when: pamConfig_run.rc != 0
+
+- name: Disable SSSD in PAM configuration
+  command: /bin/bash -c "pam-config --delete --sss"
+  when: pamConfig_run.rc != 0
