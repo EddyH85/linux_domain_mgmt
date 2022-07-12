@@ -4,10 +4,11 @@ package:
   - sssd
   - sssd-krb5
   - sssd-ad
+  - sssd-tools
+  - mksh
+  - cifs-utils
   - realmd 
   - adcli 
-  - samba-common 
-  - samba-common-tools 
   - krb5-client
   - python3-setuptools
   - python-pip

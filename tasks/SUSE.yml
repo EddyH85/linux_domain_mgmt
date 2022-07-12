@@ -23,7 +23,7 @@
   debug:
     msg: "ad_status is {{ ad_status.rc }}"
 
-- name: Active Dircetory Domain Join in to {{ DomainName }}
+- name: Active Dircetory Domain join in to {{ DomainName }}
   block:
     - name: Configuring Kerberos V5 Client
       template:
@@ -79,13 +79,13 @@
 
     - name: Check if pam-config did a previous run
       command: egrep '^auth.*pam_sss.so' /etc/pam.d/common-auth
-      register: pam-config_run
+      register: pamConfig_run
       changed_when: false
       ignore_errors: true
 
     - name: Configure PAM to use SSSD for auth
       command: pam-config --add --sss --mkhomedir
-      when: pam-config_run.rc != 0
+      when: pamConfig_run.rc != 0
 
     - name: Configuring SSSD Client
       template:
