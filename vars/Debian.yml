@@ -12,5 +12,3 @@ package:
   - samba-common 
   - samba-common-bin 
   - packagekit
-  - python-pexpect
-  - python3-pexpect
