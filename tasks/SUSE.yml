@@ -108,5 +108,4 @@
         regexp: '^ansible'
         line: 'DESA_LNX_ADMIN ALL=(ALL) NOPASSWD: ALL'
         validate: 'visudo -cf %s'
-
   when: ad_status.rc !=0
