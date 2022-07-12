@@ -72,10 +72,8 @@
         - { search: 'GSSAPIDelegateCredentials', replace: 'GSSAPIDelegateCredentials yes' }
 
     - name: Join {{ ansible_hostname }} into Domain {{ DomainName }}
-      expect:
-        command: /bin/bash -c "adcli join -U {{ Join_User }} {{ DomainName }} -O {{ Join_OU }}"
-        responses:
-          Password for *: "{{ Join_User_Pass }}"
+      command: /bin/bash -c "echo '{{ Join_User_Pass }}' | adcli join -U {{ Join_User }} {{ DomainName }} -O {{ Join_OU }} –stdin-password"
+
 
     - name: Check if pam-config did a previous run
       command: egrep '^auth.*pam_sss.so' /etc/pam.d/common-auth
