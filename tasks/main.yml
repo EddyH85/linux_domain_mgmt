@@ -11,3 +11,8 @@
   with_first_found:
     - "{{ ansible_distribution_file_variety }}-{{ ansible_distribution_major_version }}.yml"
     - "{{ ansible_distribution_file_variety }}.yml"
+  when: join_domain == true
+
+- name: Leave Active Directory Domain
+  include_taks: "leave_domain.yml"
+  when: join_domain == false
