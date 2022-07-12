@@ -19,3 +19,9 @@
     - winbind
     - messagebus
     - oddjobd
+
+- name: restart sshd
+  systemd:
+    name: sshd
+    state: restarted
+    enabled: yes

@@ -39,13 +39,13 @@
         regexp: '^({{ item }}(?!.*\bsss\b).*)$'
         replace: '\1 sss'
         backup: yes
-        with_items:
-          - passwd
-          - group
-          - shadow
-          - services
-          - netgroup
-          - sudoers
+      with_items:
+        - passwd
+        - group
+        - shadow
+        - services
+        - netgroup
+        - sudoers
 
     - name: Enable SSO on SSH Daemon
       lineinfile:
