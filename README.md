@@ -11,49 +11,46 @@ This role is tested on RedHat/CentOS 7.x, 8.x 6.6, Ubuntu 22, 20, 18, 16 and Deb
 
 ansible-galaxy install EddyH85.linux_domain_mgmt
 
-# Role Configuration
-
-file: defaults/main.yml
-```yaml
-#set this variable to True if the managed hosts are bihind a web proxy... default False
-use_proxy: False
-```
-```yaml
-proxy_env: []
-#Set environmenet variable for web proxy sexample:
-#  proxy_env:
-#  http_proxy: http://proxy.local:8080/
-#  https_proxy: http://proxy.local:8080/
-```
-
 # Role Variables
 
-file: vars/main.yml
+file: defaults/main.yml and vars/credentials.yml
+The Role uses the following variables, which you should override in your playbook:
+
 ```yaml
-Join_User: ADMDOMAIN # Replace ADMDOMAIN with the username domain admin
-DomainName: linuxlab.local # Replace linuxlab.local with the domainname
-Join_User_Pass: admdomainpassword # Replace admdomainpassword with the username domain admin password
-realm: LINUXLAB.LOCAL # replace this value with by Domaine Name
-server: linuxlab.local # replace this value with by active directory server
+file: defaults/main.yml
+join_domain: true # true/ flase - join or leave Active Directory Domain
+DomainName: linuxlab.local # replace linuxlab.local with your Domainname
+realm: LINUXLAB.LOCAL # replace this value with your Domainname in Uppercase
+Join_OU: OU=Server,OU=Germany,DC=linuxlab,DC=local # replace this Value with your LDAP path
+PermitAdminUsers: Administrator # set here your administrative Users comma separates
+PermitAdminGroups: LinuxAdmins # set here your administrative Groups comma separates
 ```
-file: vars/RedHat-6.yml
+
+file: vars/credentials.yml
+
 ```yaml
-workgroup: LAB # replace this value with by WORKGROUP
-kdc:
-    - kerberos-1.linuxlab.local:88 # replace this value with by firt Kerberos server name
-    - kerberos-2.linuxlab.local:88 # replace this value with by second Kerberos server name
-    - kerberos-3.linuxlab.local:88 # replace this value with by third Kerberos server name
-domain_realms:
-    - .linuxlab.local # replace this value with by domaine name
-    - linuxlab.local # replace this value with by domaine name
+Join_User: ADMDOMAIN
+Join_User_Pass: admdomainpassword
 ```
-    
+
  # Example Playbook
 ```yaml
-- hosts: servers
+---
+- hosts: lx64*
+  gather_facts: yes
+  become: true
   roles:
-    - role: mahdi22.linux_joindomain
-      become: yes
+    - linux_domain_mgmt
+
+  vars:
+    Join_User: tu-adjoin
+    DomainName: linuxlab.de
+    Join_User_Pass: Passw0rd
+    realm: LINUXLAB.DE
+    Join_OU: OU=Server,OU=Germany,OU=Linuxlab,DC=linuxlab,DC=de
+    PermitAdminUsers: Administrator
+    PermitAdminGroups: D_LINUX_ADMINs
+    join_domain: true
 ```
 
 ## Testing
