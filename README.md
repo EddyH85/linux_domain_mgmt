@@ -1,13 +1,15 @@
-<h1>Linux Active Directory Domain join</h1>
-This is an ansible role to automaticaly join Linux Machine CentOS and Redhat using sssd, realm, samba and winbind. This role is tested on RedHat/CentOS 7.x, 8.x 6.6 and Ubuntu 22 20 18 16 and Debian 10 9
+<h1>Linux Active Directory Domain Mangement</h1>
+This is an Ansible role to automaticaly join or leave a Active Directory Domain with a Linux Machine using Kerberos and SSSD.
+This role is tested on RedHat/CentOS 7.x, 8.x 6.6, Ubuntu 22, 20, 18, 16 and Debian 10, 9 wie auch open(SUSE) 11.x, 12.x, 15.x.
 
 # Requirements
 
-- Ansible >= 2.7
+- Ansible >= 2.6
+- Active Directory Service User
 
 # Installation
 
-ansible-galaxy install mahdi22.linux_joindomain
+ansible-galaxy install EddyH85.linux_domain_mgmt
 
 # Role Configuration
 
