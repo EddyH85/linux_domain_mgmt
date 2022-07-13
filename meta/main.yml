@@ -1,7 +1,7 @@
 galaxy_info:
-  author: Mahdi BOURBITA
-  role_name: linux_joindomain
-  description: Join Domain Active Directory using sssd for RedHat, CentOS, Debian, Ubuntu distributions and using samba winbind for Redhat/CentOS 6
+  author: Eduard Herlitz
+  role_name: linux_domain_mgmt
+  description: Join or leave Microsoft - Active Directory Domain, using Kerberos und SSSD for RedHat/ CentOS, Debian, Ubuntu and open(SUSE) Distributions.
 
   license: Apache
 
@@ -25,15 +25,17 @@ galaxy_info:
   galaxy_tags:
     - system
     - linux
+    - kerberos
     - sssd
     - realm
-    - samba
-    - winbind
     - krb5
     - redhat
     - centos
     - ansible
     - debian
     - ubuntu
+    - sles
+    - opensuse
+    - suse
 
 dependencies: []
