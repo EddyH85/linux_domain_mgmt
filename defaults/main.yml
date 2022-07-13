@@ -5,6 +5,7 @@ realm: LINUXLAB.LOCAL
 Join_OU: OU=Server,OU=Germany,DC=linuxlab,DC=local
 PermitAdminUsers: Administrator
 PermitAdminGroups: LinuxAdmins
+
 server: linuxlab.local
 #### CentOS/RHel 6 VARS #######
 workgroup: LAB
