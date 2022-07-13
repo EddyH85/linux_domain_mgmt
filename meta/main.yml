@@ -30,6 +30,7 @@ galaxy_info:
     - realm
     - krb5
     - redhat
+    - rhel
     - centos
     - ansible
     - debian
