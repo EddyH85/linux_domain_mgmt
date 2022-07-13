@@ -5,7 +5,7 @@ This role is tested on RedHat/CentOS 7.x, 8.x 6.6, Ubuntu 22, 20, 18, 16 and Deb
 # Requirements
 
 - Ansible >= 2.6
-- Active Directory Service User
+- Active Directory Service-User
 
 # Installation
 
