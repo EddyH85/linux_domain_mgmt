@@ -22,6 +22,11 @@ galaxy_info:
       - focal
       - bionic
       - xenial
+  - name: SLES
+    Versions:
+      - 11
+      - 12
+      - 15
   galaxy_tags:
     - Active Directory
     - system
