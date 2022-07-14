@@ -23,7 +23,7 @@ galaxy_info:
       - bionic
       - xenial
   galaxy_tags:
-    - ansible
+    - Active Directory
     - system
     - linux
     - unified
