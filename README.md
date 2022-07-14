@@ -41,7 +41,7 @@ Join_User_Pass: admdomainpassword
   gather_facts: yes
   become: true
   roles:
-    - linux_domain_mgmt
+    - EddyH85.linux_domain_mgmt
 
   vars:
     Join_User: tu-adjoin
