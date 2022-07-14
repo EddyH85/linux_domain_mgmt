@@ -6,6 +6,9 @@ Join_OU: OU=Server,OU=Germany,DC=linuxlab,DC=local
 PermitAdminUsers: Administrator
 PermitAdminGroups: LinuxAdmins
 
+Join_User: ADMDOMAIN
+Join_User_Pass: admdomainpassword
+
 server: linuxlab.local
 #### CentOS/RHel 6 VARS #######
 workgroup: LAB
