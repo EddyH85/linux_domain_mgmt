@@ -1,23 +1,12 @@
 ---
+# Domain Information
 join_domain: true
 DomainName: linuxlab.local
 realm: LINUXLAB.LOCAL
 Join_OU: OU=Server,OU=Germany,DC=linuxlab,DC=local
-PermitAdminUsers: Administrator
-PermitAdminGroups: LinuxAdmins
-
+# Credentials
 Join_User: ADMDOMAIN
 Join_User_Pass: admdomainpassword
-
-server: linuxlab.local
-#### CentOS/RHel 6 VARS #######
-workgroup: LAB
-winbind_krb5:
-  realms:
-    kdc:
-      - kerberos-1.linuxlab.local:88
-      - kerberos-1.linuxlab.local:88
-      - kerberos-1.linuxlab.local:88
-  domain_realms:
-    - .linuxlab.local
-    - linuxlab.local
+# Permissions
+PermitAdminUsers: Administrator # set here your administrative Users comma separates
+PermitAdminGroups: LinuxAdmins # set here your administrative Groups comma separates
