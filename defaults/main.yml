@@ -8,5 +8,5 @@ Join_OU: OU=Server,OU=Germany,DC=linuxlab,DC=local
 Join_User: ADMDOMAIN
 Join_User_Pass: admdomainpassword
 # Permissions
-PermitAdminUsers: Administrator # set here your administrative Users comma separates
-PermitAdminGroups: LinuxAdmins # set here your administrative Groups comma separates
+PermitAdminUsers: Administrator 
+PermitAdminGroups: LinuxAdmins
