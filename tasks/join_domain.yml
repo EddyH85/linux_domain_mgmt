@@ -57,6 +57,7 @@
         - { search: 'GSSAPICleanupCredentials', replace: 'GSSAPICleanupCredentials yes' }
         - { search: 'ChallengeResponseAuthentication', replace: 'ChallengeResponseAuthentication yes' }
         - { search: 'KbdInteractiveAuthentication', replace: 'KbdInteractiveAuthentication yes' }
+        - { search: 'UsePAM', replace: 'UsePAM yes' }
       notify: restart sshd
 
     - name: Enable SSO on SSH Client
