@@ -9,9 +9,11 @@ This role is tested on RedHat/CentOS 7-9, Ubuntu LTS releaeses 16-22 and Debian 
 - Configured NTP-Client
 - DNS configuration and correct entries
 
+
 # Installation
 
 ansible-galaxy install EddyH85.linux_domain_mgmt
+
 
 # Role Variables
 
@@ -31,6 +33,7 @@ Join_User_Pass: admdomainpassword
 PermitAdminUsers: Administrator # set here your administrative Users comma separates
 PermitAdminGroups: LinuxAdmins # set here your administrative Groups comma separates
 ```
+
 
  # Example Playbook
 ```yaml
@@ -54,8 +57,8 @@ PermitAdminGroups: LinuxAdmins # set here your administrative Groups comma separ
     join_domain: true
 ```
 
-## Testing
 
+## Testing
 This role is tested on Linux distributions:
 
 - (open)SUSE 12 and 15
@@ -67,6 +70,5 @@ This role is tested on Linux distributions:
 - Debian 8
 - Ubuntu 22.04
 - Ubuntu 20.04
-- Ubuntu 19.10
 - Ubuntu 18.04
 - Ubuntu 16.04
