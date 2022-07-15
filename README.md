@@ -6,6 +6,8 @@ This role is tested on RedHat/CentOS 7-9, Ubuntu LTS releaeses 16-22 and Debian 
 
 - Ansible >= 2.6
 - Active Directory Service-User
+- Configured NTP-Client
+- DNS configuration and correct entries
 
 # Installation
 
