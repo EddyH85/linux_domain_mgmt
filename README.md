@@ -19,6 +19,7 @@ file: defaults/main.yml
 The Role uses the following variables, which you should override in your playbook:
 
 ```yaml
+# Domain Information
 join_domain: true # true/ flase - join or leave Active Directory Domain
 DomainName: linuxlab.local # replace linuxlab.local with your Domainname
 realm: LINUXLAB.LOCAL # replace this value with your Domainname in Uppercase
@@ -26,7 +27,6 @@ Join_OU: OU=Server,OU=Germany,DC=linuxlab,DC=local # replace this Value with you
 # Credentials
 Join_User: ADMDOMAIN
 Join_User_Pass: admdomainpassword
-
 # Permissions
 PermitAdminUsers: Administrator # set here your administrative Users comma separates
 PermitAdminGroups: LinuxAdmins # set here your administrative Groups comma separates
