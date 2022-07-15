@@ -9,6 +9,3 @@ package:
   - samba-common 
   - samba-common-tools 
   - krb5-workstation 
-  - openldap-clients
-  - python-setuptools-devel
-  - python-pip
