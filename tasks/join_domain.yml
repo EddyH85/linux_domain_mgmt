@@ -55,8 +55,8 @@
       with_items:
         - { search: 'GSSAPIAuthentication', replace: 'GSSAPIAuthentication yes' }
         - { search: 'GSSAPICleanupCredentials', replace: 'GSSAPICleanupCredentials yes' }
-        - { search: 'ChallengeResponseAuthentication', replace: 'ChallengeResponseAuthentication yes' }
-        - { search: 'KbdInteractiveAuthentication', replace: 'KbdInteractiveAuthentication yes' }
+        - { search: 'KerberosAuthentication', replace: 'KerberosAuthentication yes' }
+        - { search: 'GSSAPIKeyExchange', replace: 'GSSAPIKeyExchange yes' }
         - { search: 'UsePAM', replace: 'UsePAM yes' }
       notify: restart sshd
 
