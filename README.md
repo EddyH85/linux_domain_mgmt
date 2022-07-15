@@ -1,6 +1,6 @@
 <h1>Linux Active Directory Domain Mangement</h1>
 This is an Ansible role to automaticaly join or leave a Active Directory Domain with a Linux Machine using Kerberos and SSSD.
-This role is tested on RedHat/CentOS 7-9, Ubuntu LTS releaeses 16-22 and Debian 10, 9, 8 as well as open(SUSE) 11-15.
+This role is tested on RedHat/CentOS 7-9, Ubuntu LTS releaeses 16-22 and Debian 8-10 as well as open(SUSE) 11-15.
 
 # Requirements
 
