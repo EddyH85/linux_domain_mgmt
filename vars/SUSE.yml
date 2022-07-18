@@ -7,9 +7,6 @@ package:
   - sssd-tools
   - mksh
   - cifs-utils
-  - realmd 
+  - realmd
   - adcli 
   - krb5-client
-  - python3-setuptools
-  - python-pip
-  - python3-pip

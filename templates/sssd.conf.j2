@@ -1,7 +1,7 @@
 [sssd]
 config_file_version = 2
 services = nss, pam, ssh
-domains = wuh-intern.de
+domains = {{ DomainName }}
 
 [nss]
 filter_groups = root
@@ -9,9 +9,9 @@ filter_users = root
 
 [pam]
  
-[domain/wuh-intern.de]
-ad_domain = wuh-intern.de
-krb5_realm = WUH-INTERN.DE
+[domain/{{ DomainName }}]
+ad_domain = {{ DomainName }}
+krb5_realm = {{ realm }}
 cache_credentials = true
 id_provider = ad
 krb5_store_password_if_offline = false
