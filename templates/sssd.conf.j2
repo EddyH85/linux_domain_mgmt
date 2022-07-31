@@ -8,6 +8,7 @@ filter_groups = root
 filter_users = root
 
 [pam]
+offline_credentials_expiration = 3
  
 [domain/{{ DomainName }}]
 ad_domain = {{ DomainName }}
@@ -24,5 +25,8 @@ ad_gpo_ignore_unreadable = True
 default_shell = /bin/bash
 override_shell = /bin/bash
 dyndns_update = False
+cache_credentials = true
+account_cache_expiration = 7
+entry_cache_timeout = 14400
 simple_allow_users = {{ PermitAdminUsers }}
 simple_allow_groups = {{ PermitAdminGroups }}
