@@ -62,6 +62,6 @@ PermitAdminGroups: LinuxAdmins # set here your administrative Groups comma separ
 This role is tested on Linux distributions:
 
 - (open)SUSE 11-15
-- RHEL/CentOS 6-9
+- RHEL/CentOS 7-9
 - Debian 8-10
 - Ubuntu LTS 16.04, 18.04, 20.04 22.04
